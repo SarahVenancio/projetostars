@@ -28,7 +28,7 @@ export async function POST(requisicao: Request) {
       );
     }
 
-    const chaveApi = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
+    const chaveApi = process.env.GEMINI_API_KEY;
 
     if (!chaveApi) {
       return NextResponse.json(
@@ -40,7 +40,7 @@ export async function POST(requisicao: Request) {
     const genAI = new GoogleGenerativeAI(chaveApi);
 
     // Usando o modelo `gemini-pro` para geração de texto
-    const modelo = genAI.getGenerativeModel({ model: "gemini-pro" });
+    const modelo = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
     // Configurações de segurança para evitar conteúdo inadequado
     const safetySettings = [
