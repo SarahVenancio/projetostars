@@ -52,7 +52,12 @@ export async function POST(requisicao: Request) {
     const genAI = new GoogleGenerativeAI(chaveApi);
 
     // Usando o modelo `gemini-pro` para geração de texto
-    const modelo = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+    const modelo = genAI.getGenerativeModel({ model: "gemini-2.0-flash",
+      // Adicione a configuração de temperatura aqui:
+      generationConfig: {
+        temperature: 0.1, // Experimente valores entre 0.1 e 0.5
+      },
+    });
 
     // Configurações de segurança para evitar conteúdo inadequado
     const safetySettings = [
@@ -91,7 +96,7 @@ export async function POST(requisicao: Request) {
         // ... mais 9 perguntas
       ]
     }
-    As perguntas devem ser variadas e cobrir aspectos importantes da vida do famoso. Não inclua informações sensíveis ou inadequadas. As alternativas devem ser plausíveis.`;
+    As perguntas devem ser variadas e cobrir aspectos importantes da vida do famoso. Não inclua informações sensíveis ou inadequadas. As alternativas devem ser plausíveis. Não crie informações fictícias ou irreais e não misture informações de outras pessoas. Pesquise exatamente sobre a pessoa mencionada. Se existir mais de uma pessoa famosa com o mesmo nome, pegue da pessoas mais relevante. Se não encontrar informações suficientes, retorne um questionário com 5 perguntas e 4 alternativas..`;
 
     const resultado = await modelo.generateContent({
       contents: [{ role: "user", parts: [{ text: prompt }] }],

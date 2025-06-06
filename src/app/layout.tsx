@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Gerador de Questionário de Famosos",
+  title: "Stars Trivia",
   description: "Crie questionários interativos sobre seus famosos favoritos!",
 };
 
