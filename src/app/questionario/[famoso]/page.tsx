@@ -2,16 +2,20 @@
 
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
-import Image from 'next/image'; // Para futuras imagens, se necessário
 import { useRouter } from 'next/navigation'; // Para navegação programática
-import ComponentePergunta from '@/app/ui/ComponentePergunta'; // Adicione esta linha
+import ComponentePergunta from '@/app/ui/ComponentePergunta'; // Importa o ComponentePergunta
 
-// Interface para a estrutura de uma pergunta
+// Re-exporta a interface Pergunta para ser usada aqui, se necessário,
+// ou se o ComponentePergunta a exportar.
+// Ou, se a interface já estiver no ComponentePergunta.tsx,
+// basta garantir que a tipagem esteja correta.
+// Vamos manter a interface aqui para clareza, pois a lógica de estado a utiliza.
 interface Pergunta {
   pergunta: string;
   alternativas: string[];
   respostaCorreta: string;
 }
+
 
 export default function PaginaQuestionarioFamoso() {
   const params = useParams();
@@ -60,22 +64,26 @@ export default function PaginaQuestionarioFamoso() {
           throw new Error(dadosErro.erro || `Erro HTTP: ${resposta.status}`);
         }
 
-        const dados = await resposta.json();
+        const dados: { questionario: Pergunta[] } = await resposta.json(); // Tipando a resposta
         if (dados.questionario && Array.isArray(dados.questionario) && dados.questionario.length > 0) {
           setPerguntas(dados.questionario);
         } else {
           setErro("O questionário retornado está vazio ou em formato inválido.");
         }
-      } catch (e: any) {
+      } catch (e: unknown) { // CORRIGIDO: usando unknown
         console.error("Erro ao buscar questionário:", e);
-        setErro(e.message || "Não foi possível carregar o questionário. Tente novamente.");
+        if (e instanceof Error) {
+          setErro(e.message || "Não foi possível carregar o questionário. Tente novamente.");
+        } else {
+          setErro("Um erro desconhecido ocorreu ao carregar o questionário. Tente novamente.");
+        }
       } finally {
         setCarregando(false);
       }
     }
 
     carregarQuestionario();
-  }, [nomeFamoso]); // Recarrega o questionário se o nome do famoso na URL mudar
+  }, [nomeFamoso]);
 
   const lidarComSelecaoResposta = (indicePergunta: number, resposta: string) => {
     setRespostasSelecionadas((prev) => ({
@@ -91,14 +99,14 @@ export default function PaginaQuestionarioFamoso() {
         acertos++;
       }
     });
-    setPontuacao(acertos * 10); // Exemplo: 10 pontos por acerto
+    setPontuacao(acertos * 10);
     setRespostasCorretas(acertos);
     setRespostasErradas(perguntas.length - acertos);
     setQuestionarioFinalizado(true);
   };
 
   const lidarComNovoQuestionario = () => {
-    router.push('/'); // Volta para a página inicial para gerar um novo
+    router.push('/');
   }
 
   if (carregando) {
@@ -148,14 +156,14 @@ export default function PaginaQuestionarioFamoso() {
         </h1>
 
         {perguntas.map((pergunta, indice) => (
-            <ComponentePergunta
-                key={indice}
-                indice={indice}
-                pergunta={pergunta}
-                respostaSelecionada={respostasSelecionadas[indice]}
-                onSelectResposta={(resposta) => lidarComSelecaoResposta(indice, resposta)}
-                questionarioFinalizado={questionarioFinalizado}
-            />
+          <ComponentePergunta
+            key={indice}
+            indice={indice}
+            pergunta={pergunta}
+            respostaSelecionada={respostasSelecionadas[indice]}
+            onSelectResposta={(resposta) => lidarComSelecaoResposta(indice, resposta)}
+            questionarioFinalizado={questionarioFinalizado}
+          />
         ))}
 
         {!questionarioFinalizado ? (

@@ -1,8 +1,20 @@
 import { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory } from "@google/generative-ai";
 import { NextResponse } from "next/server";
 
+// Interface para a estrutura de uma pergunta (igual à do frontend)
+interface PerguntaAPI {
+    pergunta: string;
+    alternativas: string[];
+    respostaCorreta: string;
+}
+
+// Interface para a estrutura completa do questionário esperado
+interface QuestionarioAPI {
+    questionario: PerguntaAPI[];
+}
+
 // Função para formatar o texto para JSON
-function extrairJson(texto: string): any | null {
+function extrairJson(texto: string): QuestionarioAPI | null {
   try {
     const inicio = texto.indexOf('{');
     const fim = texto.lastIndexOf('}');
