@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌟 StarsTrivia 🌟
 
-## Getting Started
+## Gerador de Questionários Interativos sobre Famosos com Inteligência Artificial
 
-First, run the development server:
+![Next.js](https://img.shields.io/badge/Next.js-Black?style=for-the-badge&logo=next.js&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Google Gemini](https://img.shields.io/badge/Google_Gemini-Blue?style=for-the-badge&logo=google&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+
+
+## 🚀 Sobre o Projeto
+
+O **StarQuiz AI** é uma aplicação web inovadora que permite aos usuários gerar questionários de múltipla escolha interativos sobre seus famosos favoritos. Utilizando o poder da inteligência artificial do **Google Gemini**, o aplicativo pesquisa informações sobre a vida e carreira das celebridades e as transforma em perguntas e respostas desafiadoras em tempo real.
+
+Ideal para fãs de cultura pop, curiosos ou qualquer um que queira testar seus conhecimentos de forma divertida e dinâmica!
+
+## ✨ Funcionalidades
+
+* **Geração de Questionários sob Demanda:** Digite o nome de qualquer famoso e o app cria um questionário personalizado.
+* **Perguntas e Alternativas Dinâmicas:** As perguntas e suas 4 alternativas (com uma resposta correta) são geradas pela IA.
+* **Interface Intuitiva:** Design limpo e responsivo construído com Tailwind CSS.
+* **Validação de Respostas:** O usuário seleciona suas respostas e vê os resultados ao final do quiz.
+* **Integração com Google Gemini API:** O coração da aplicação, responsável pela inteligência na criação do conteúdo.
+* **Segurança:** A chave da API do Gemini é protegida no backend (Next.js API Routes).
+* **Deploy Fácil:** Projetado para deploy contínuo na Vercel.
+
+## 🛠️ Tecnologias Utilizadas
+
+* **Frontend:**
+    * [**Next.js (App Router)**](https://nextjs.org/) - Framework React para aplicações web.
+    * [**React**](https://react.dev/) - Biblioteca JavaScript para construir interfaces de usuário.
+    * [**TypeScript**](https://www.typescriptlang.org/) - Superset de JavaScript para tipagem estática.
+    * [**Tailwind CSS**](https://tailwindcss.com/) - Framework CSS utilitário para estilização rápida e responsiva.
+* **Backend (Next.js API Routes):**
+    * [**Google Gemini API**](https://ai.google.dev/models/gemini) - Modelo de linguagem grande para geração de conteúdo.
+    * [**@google/generative-ai**](https://www.npmjs.com/package/@google/generative-ai) - SDK oficial do Google para interagir com a API Gemini.
+* **Controle de Versão:**
+    * [**Git**](https://git-scm.com/)
+* **Deploy:**
+    * [**Vercel**](https://vercel.com/)
+
+## 🚀 Como Rodar o Projeto Localmente
+
+Siga estas instruções para configurar e executar o projeto em sua máquina local.
+
+### Pré-requisitos
+
+Certifique-se de ter as seguintes ferramentas instaladas:
+
+* Node.js (versão 18.x ou superior)
+* npm (gerenciador de pacotes do Node.js) ou Yarn ou pnpm
+* Conta no Google Cloud/Google AI Studio e uma [chave da API do Google Gemini](https://ai.google.dev/gemini-api/docs/get-started/node).
+
+### 1. Clonar o Repositório
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+git clone <URL_DO_SEU_REPOSITORIO>
+cd star-quiz-ai # Ou o nome da sua pasta do projeto
