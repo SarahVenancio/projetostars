@@ -18,7 +18,7 @@ export default function Home() {
 
   return (
     <>
-      <main className="flex min-h-[82vh] flex-col items-center justify-center p-8 bg-gradient-to-br from-slate-900 to-blue-950 text-gray-100">
+      <main className="flex min-h-[84vh] flex-col items-center justify-center p-8 bg-gradient-to-br from-slate-900 to-blue-950 text-gray-100">
         <div className="w-full max-w-md bg-white p-8 rounded-xl shadow-2xl transform hover:scale-105 transition duration-500 ease-in-out text-center">
           <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-orange-600 mb-6 drop-shadow-lg">
             ⭐Stars Trivia⭐
