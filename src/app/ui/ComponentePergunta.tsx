@@ -1,7 +1,6 @@
 // app/ui/ComponentePergunta.tsx
 import React from 'react';
 
-// Interface para a estrutura de uma pergunta
 interface PerguntaProps {
   indice: number;
   pergunta: {
@@ -22,9 +21,9 @@ export default function ComponentePergunta({
   questionarioFinalizado,
 }: PerguntaProps) {
   return (
-    <div className="mb-8 p-6 border border-gray-200 rounded-lg bg-gray-50">
-      <p className="text-xl font-semibold mb-4 text-gray-900">
-        {indice + 1}. {pergunta.pergunta}
+    <div className="mb-8 p-6 border-2 border-slate-700 rounded-lg bg-slate-800 shadow-xl">
+      <p className="text-xl font-semibold mb-4 text-gray-100">
+        <span className="text-yellow-400">{indice + 1}.</span> {pergunta.pergunta}
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {pergunta.alternativas.map((alternativa, altIndice) => (
@@ -32,23 +31,23 @@ export default function ComponentePergunta({
             key={altIndice}
             onClick={() => !questionarioFinalizado && onSelectResposta(alternativa)}
             className={`
-              p-3 text-left rounded-md border-2
+              p-4 text-left rounded-md border-2 text-lg font-medium
               ${
                 questionarioFinalizado
                   ? alternativa === pergunta.respostaCorreta
-                    ? 'bg-green-200 border-green-500 text-green-800 font-bold' // Correta
+                    ? 'bg-green-600 border-green-700 text-white font-bold' // Correta e Finalizada
                     : respostaSelecionada === alternativa
-                      ? 'bg-red-200 border-red-500 text-red-800 font-bold'    // Errada selecionada
-                      : 'bg-gray-100 border-gray-300 text-gray-700'          // Outras
+                      ? 'bg-red-600 border-red-700 text-white font-bold'    // Errada selecionada e Finalizada
+                      : 'bg-slate-700 border-slate-600 text-gray-300'          // Outras quando finalizado
                   : respostaSelecionada === alternativa
-                    ? 'bg-blue-100 border-blue-500 text-blue-800 font-semibold' // Selecionada
-                    : 'bg-white border-gray-300 hover:bg-gray-50 transition duration-150 ease-in-out' // Não selecionada
+                    ? 'bg-yellow-500 border-yellow-600 text-slate-900 font-bold shadow-md' // Selecionada antes de finalizar
+                    : 'bg-slate-700 border-slate-600 text-gray-300 hover:bg-slate-600 transition duration-150 ease-in-out' // Não selecionada
               }
               ${questionarioFinalizado ? 'cursor-default' : 'cursor-pointer'}
             `}
             disabled={questionarioFinalizado}
           >
-            {String.fromCharCode(65 + altIndice)}. {alternativa}
+            <span className="font-bold">{String.fromCharCode(65 + altIndice)}.</span> {alternativa}
           </button>
         ))}
       </div>
